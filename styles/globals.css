@@ -1,31 +1,42 @@
 /* ./styles/globals.css */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 @layer base {
   @font-face {
-    font-family: Roboto;
-    font-weight: 300;
-    src: local("Times New Roman"), url("../fonts/Roboto-Light.ttf") format("truetype");
-    font-display: swap;
-  }
-  
-  @font-face {
-    font-family: Roboto;
+    font-family: OpenSans;
     font-weight: 400;
-    src: local("Times New Roman"), url("../fonts/Roboto-Regular.ttf") format("truetype");
-    font-display: swap;
+    src: url("../fonts/OpenSans-Regular.ttf") format("truetype");
   }
-  
   @font-face {
-    font-family: Roboto;
+    font-family: OpenSans;
     font-weight: 700;
-    src: local("Times New Roman"), url("../fonts/Roboto-Bold.ttf") format("truetype");
-    font-display: swap;
+    src: url("../fonts/OpenSans-Bold.ttf") format("truetype");
+  }
+  @font-face {
+    font-family: OpenSans;
+    font-weight: 900;
+    src: url("../fonts/OpenSans-ExtraBold.ttf") format("truetype");
+  }
+  @font-face {
+    font-family: OpenSans;
+    font-style: italic;
+    src: url("../fonts/OpenSans-Italic.ttf") format("truetype");
   }
 }
 
 .darken:hover {
   filter: brightness(85%) contrast(115%);
+}
+
+@layer utilities {
+  .blogContentWidth {
+    width: 100%;
+  }
+  @screen lg {
+    .blogContentWidth {
+      width: calc(100% - 20rem);
+    }
+  }
 }

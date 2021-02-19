@@ -2,10 +2,22 @@ const colors = require('tailwindcss/colors')
 
 module.exports = {
   purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: 'class', // or 'media' or 'class'
   theme: {
     extend: {
       colors: {
+        "primary-dark": "#0d1219",
+        "primary-dark-acc": "#202c3d",
+        "primary": "#eef0f1",
+        "primary-acc": "#ffffff",
+        "primary-bd": "#d6d8da",
+        "primary-bd-dark": "#22303f",
+        "blog-link": {
+          light: "#9896ff",
+          normal: "#3d49df",
+        },
+        fuchsia: colors.fuchsia,
+        trueGray: colors.trueGray,
         blue: colors.blue,
         green: colors.green,
         orange: colors.orange,
@@ -16,7 +28,7 @@ module.exports = {
         yellow: colors.yellow,
       },
       fontFamily: {
-        "bot": ["Roboto",],
+        "open": ["OpenSans",],
       },
     },
   },

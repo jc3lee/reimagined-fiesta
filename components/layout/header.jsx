@@ -1,12 +1,13 @@
 import Head from "next/head"
-const WEBSITE_TITLE = "Welcome!"
+const WEBSITE_TITLE = "JC Lee"
 const WEBSITE_DESCRIPTION = "description"
 const WEBSITE_URL = ""
+const TWITTER_CARD_SRC = ""
 
-const Header = ({ title = "Welcome!" }) => {
+const Header = ({ title = "Welcome!", description = "", card = "", url = "" }) => {
   return (
     <Head>
-      <title>{WEBSITE_TITLE}</title>
+      <title>{title} | {WEBSITE_TITLE}</title>
       <meta name="description" content={WEBSITE_DESCRIPTION} />
       <link rel="shortcut icon" href="/favicons/favicon.ico" />
       <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
