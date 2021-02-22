@@ -2,15 +2,10 @@ import TwitterIco from '../../icons/TwitterIco'
 import { AuthorThumbTiny, } from './postMeta/authorThumb'
 import PostDate from './postMeta/postDate'
 import PostReadTime from './postMeta/postReadTime'
-const author = {
-  name: "JC Lee",
-  pic: "/images/blog/author-pic.webp",
-  twitterHandle: "@ljc_dev",
-  twitterUrl: "https://twitter.com/ljc_dev",
-}
+import { author } from "../../pages/author.json"
 
 const PostDetails = ({ meta, }) => {
-  const { date, readTime, } = meta
+  const { date, readingTime, } = meta
   return (
     <div className="mt-4">
       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between">
@@ -36,7 +31,7 @@ const PostDetails = ({ meta, }) => {
           </p>
           <span className="mx-2">·</span>
           <p style={{ wordSpacing: "0.15rem" }}>
-            <PostReadTime readTime={readTime} />
+            <PostReadTime readingTime={readingTime} />
           </p>
         </div>
       </div>

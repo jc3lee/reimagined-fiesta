@@ -6,11 +6,11 @@ import PostReadTime from "./postMeta/postReadTime"
 import PostTag from "./postMeta/postTag"
 
 const PostItem = ({ meta }) => {
-  const { title, cover, date, readTime, description, slug, tags, } = meta
+  const { title, cover, date, readingTime, description, slug, tags, } = meta
   const truncatedDesc = getTruncatedText(description)
   return (
     <div className="mb-12 w-full lg:max-w-screen-sm mx-auto">
-      <Link href={`${slug}`}>
+      <Link href={`/posts/${slug}`}>
         <a className="">
           <PostCoverCard src={cover} alt={title} />
         </a>
@@ -34,12 +34,12 @@ const PostItem = ({ meta }) => {
             </p>
             <span className="mx-2">·</span>
             <p className="">
-              <PostReadTime readTime={readTime} />
+              <PostReadTime readingTime={readingTime} />
             </p>
           </div>
           <p className="mt-4 text-base leading-relaxed">{truncatedDesc}</p>
           <Link href={`/posts/${slug}`}>
-            <a className="mt-8 text-lg font-bold text-red-500">Read More {`>>`}</a>
+            <a className="mt-8 text-lg font-bold text-red-500 self-start">Read More {`>>`}</a>
           </Link>
         </div>
       </div>

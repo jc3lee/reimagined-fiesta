@@ -6,13 +6,13 @@ import PostReadTime from "./postMeta/postReadTime"
 import PostTag from "./postMeta/postTag"
 
 const TopPost = ({ meta }) => {
-  const { title, cover, date, readTime, description, slug, tags, } = meta
+  const { title, cover, date, readingTime, description, slug, tags, } = meta
   const truncatedDesc = getTruncatedText(description)
   return (
     <div className="">
       <PostCover alt={title} src={cover} />
       <div className="hidden lg:block relative w-full bg-gray-800 py-16 text-white"
-        style={{ boxShadow: "0px -50px 34px 26px rgba(0,0,0,0.59)" }}>
+        style={{ boxShadow: "0px -11px 26px -2px rgba(0,0,0,0.23)" }}>
         <div className="mx-auto max-w-screen-lg grid grid-cols-1 sm:grid-cols-2 sm:gap-x-6 px-6">
           <div className="flex flex-col">
             <Link href={`/posts/${slug}`}>
@@ -32,7 +32,7 @@ const TopPost = ({ meta }) => {
               </p>
               <span className="mx-2">·</span>
               <p className="">
-                <PostReadTime readTime={readTime} />
+                <PostReadTime readingTime={readingTime} />
               </p>
             </div>
             <p className="mt-4 text-lg leading-loose">{truncatedDesc}</p>
@@ -61,7 +61,7 @@ const TopPost = ({ meta }) => {
             </p>
             <span className="mx-2">·</span>
             <p className="">
-              <PostReadTime readTime={readTime} />
+              <PostReadTime readingTime={readingTime} />
             </p>
           </div>
           <p className="mt-4 text-base leading-relaxed">{truncatedDesc}</p>

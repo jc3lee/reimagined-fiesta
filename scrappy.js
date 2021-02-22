@@ -2,44 +2,107 @@ const fs = require("fs")
 const matter = require("gray-matter")
 const { mdxComponents } = require("./mdxComponents")
 const { getAllTagsWithColors } = require("./utils/tagsFns")
+const slugify = require("slugify")
+const readingTime = require("reading-time")
 
 const referenceLinkRegex = /^!\[.+?\]\s*(\[.+?\])/m
 
-function handleMdToMdx() {
-  const filenames = fs.readdirSync("rawPosts")
-  //save all tags for easier search
-  // default tags to include in colors (because present as default in search tag commponent)
-  const defaultTagsForColors = ["html", "css", "js", "react", "tutorial",]
-  const metas = []
-  const mdxWithFilenames = filenames.map(f => {
-    const fileContent = fs.readFileSync(`rawPosts/${f}`)
+function getAllMds(filenames = []) {
+  return filenames.map(filename => {
+    const fileContent = fs.readFileSync(`rawPosts/${filename}`)
     const { data, content } = matter(fileContent)
-    metas.push(data)
-    return { filename: `${f}x`, mdx: getMdx(data, content) }
+    return { data, content }
   })
-
-  const allTags = metas.reduce((tmpAllTags, m) => {
-    tmpAllTags.push(...m.tags)
-    return tmpAllTags
-  }, [])
-
-  for (mdxWithFilename of mdxWithFilenames) {
-    fs.writeFileSync(`pages/posts/${mdxWithFilename.filename}`, mdxWithFilename.mdx)
-  }
-  const allTagsWithNoDuplicate = Array.from(new Set(allTags))
-  const allTagsWithColors = getAllTagsWithColors(Array.from(new Set([...allTagsWithNoDuplicate, ...defaultTagsForColors])))
-
-  fs.writeFileSync("pages/metas.json", JSON.stringify({ metas, }))
-  fs.writeFileSync("pages/tags/allTags.json", JSON.stringify({ allTags: allTagsWithNoDuplicate, tagColors: allTagsWithColors }))
 }
 
-function getMdx(data, content) {
-  //replace reference link in embeds - and img because same syntax - with links
+function getAllTagsFromMds(mds) {
+  const allTagsWithDuplicates = mds.reduce((tmpAllTags, md) => {
+    tmpAllTags.push(...md.data.tags)
+    return tmpAllTags
+  }, [])
+  const allTagsWithNoDuplicates = Array.from(new Set(allTagsWithDuplicates))
+  return allTagsWithNoDuplicates
+}
+
+function extractTagsFromMds(mds) {
+  // get all tags
+  const allTags = getAllTagsFromMds(mds)
+
+  // get all tags colors
+  // a few tags are present in Search Blog but don't exist in blog posts.
+  // when search blog tries to get the colors for those tags that aren't present in metas => error.
+  // it's a bug. Need to either change default tags to existing ones or create posts with those tags. 
+  // For now cheat by including them with defaultTagsInSearchBlog
+  const defaultTagsInSearchBlog = ["html", "css", "js", "react", "tutorial",]
+  const tagColors = getAllTagsWithColors(Array.from(new Set([...allTags, ...defaultTagsInSearchBlog])))
+
+  // save tags and tags colors to json
+  fs.writeFileSync("pages/tags/allTags.json", JSON.stringify({ allTags, tagColors }))
+}
+
+function addReadingTimeToMds(allMds = []) {
+  const result = allMds.map(md => {
+    const { text } = readingTime(md.content,)
+    md.data["readingTime"] = text
+    console.log("readingTime", text)
+    return md
+  })
+  return result
+}
+
+function getSlug(text) {
+  const slug = slugify(text, {
+    replacement: '-',  // replace spaces with replacement character, defaults to `-`
+    remove: undefined, // remove characters that match regex, defaults to `undefined`
+    lower: true,      // convert to lower case, defaults to `false`
+    strict: true,     // strip special characters except replacement, defaults to `false`
+    locale: 'vi'       // language code of the locale to use
+  })
+  console.log("slug", slug)
+  return slug
+}
+
+function addSlugsToMds(mds) {
+  //add slug from title if no slug
+  const result = mds.map(md => {
+    if (!md.data.slug) md.data.slug = getSlug(md.data.title)
+    return md
+  })
+  return result
+}
+
+function handleMdToMdx() {
+  const filenames = fs.readdirSync("rawPosts")
+
+  // extract all markdowns (matter and content)
+  const allMds = getAllMds(filenames)
+
+  // get all tags from metas and save them to json
+  extractTagsFromMds(allMds)
+
+  // get all slugs from metas and save them to json
+  const allMdsWithSlugs = addSlugsToMds(allMds)
+
+  // add reading time
+  const allMdsWithSlugsAndReadingTime = addReadingTimeToMds(allMdsWithSlugs)
+
+  // save all metas to json
+  fs.writeFileSync("pages/allMetas.json", JSON.stringify({ allMetas: allMdsWithSlugsAndReadingTime.map(md => md.data), }))
+
+  // save mdx to posts folder
+  for (const md of allMdsWithSlugsAndReadingTime) {
+    fs.writeFileSync(`pages/posts/${md.data.slug}.mdx`, getMdx(md))
+  }
+}
+
+function getMdx(md) {
+  const { data, content } = md
+  // replace ref link in embeds - and img because same syntax - with links
   const replacedRefContent = replaceEmbedAndImgRefWithRefLink(content)
-  //get embeds
+  // replace links with embeds and imports
   const { componentImports, contentWithEmbeds } = getContentWithEmbedsAndImports(replacedRefContent)
-  const mdxContent = `${componentImports.join("\n")}\nexport const meta = ${JSON.stringify(data)}\n${contentWithEmbeds}`
-  return mdxContent
+  const mdx = `${componentImports.join("\n")}\nexport const meta = ${JSON.stringify(data)}\n${contentWithEmbeds}`
+  return mdx
 }
 
 const referenceRegex = /^\[(.+)?\]:\s*\<?(\S+)\>?\s+([("'](.+)?[)"'])?/gm
@@ -54,7 +117,7 @@ function getReferences(content) {
   return refObj
 }
 
-//only replace reference for images and embeds, not links
+//only replace reference for img & embeds, not links
 // syntax => ![]()
 function replaceEmbedAndImgRefWithRefLink(content) {
   let replacedRefContent = content
@@ -86,13 +149,28 @@ function getContentWithEmbedsAndImports(content) {
   return { contentWithEmbeds, componentImports, }
 }
 
-// 1 - Run this command to transform raw md to mdx
+
+// just hard coding author
+// const author = {
+//   name: "JC Lee",
+//   pic: "/images/blog/author-pic.webp",
+//   twitterHandle: "@ljc_dev",
+//   twitterUrl: "https://twitter.com/ljc_dev",
+// }
+
+// function saveAuthor() {
+//   fs.writeFileSync("pages/author.json", JSON.stringify({ author, }))
+// }
+// saveAuthor()
+
+// 1 - Run this command to transform raw md posts to mdx
 
 // handleMdToMdx()
 
-// OTHER - Running the following to check if created tags and colors ok
+// OTHER - Running the following to check tags and metas json files
 
-// const tags = require("./pages/tags/allTags.json")
-// console.log(tags.tagColors);
-// const metas = require("./pages/metas.json")
-// console.log(metas.metas);
+// const allTags = require("./pages/tags/allTags.json")
+// console.log(allTags.allTags);
+// console.log(allTags.tagColors);
+// const allMetas = require("./pages/allMetas.json")
+// console.log(allMetas.metas);

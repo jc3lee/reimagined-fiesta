@@ -24,7 +24,7 @@ const Blog = ({ metas, page, pages, }) => {
       <div className="px-6 py-12 flex flex-col lg:flex-row max-w-screen-lg w-full mx-auto">
         <div className="lg:pr-8">
           {
-            metas.map(m => (<PostItem key={m.slug} meta={m} />))
+            metas.slice(1).map(m => (<PostItem key={m.slug} meta={m} />))
           }
           <BlogPagination updateCurrentPageNum={updateCurrentPageNum} numOfPages={pages} currentPageNum={page} />
         </div>

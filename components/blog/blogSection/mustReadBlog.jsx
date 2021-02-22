@@ -4,7 +4,7 @@ import Link from "next/link"
 const meta = {
   tags: ["tutorial", "codenewbie", "javascript", "css", "unknown", "boss", "king", "sniper",],
   date: "06/02/2021",
-  readTime: "5 min read",
+  readingTime: "5 min read",
   cover: "/images/blog/bg-hero.jpg",
   title: "Introduction to scroll animations with Intersection Observer",
   slug: "hello",
@@ -26,7 +26,7 @@ const MustReadBlog = () => {
       </Link>
       <hr className="w-full bg-black mt-4" style={{ height: "2px" }} />
       <p className="mt-4 flex font-bold">
-        <PostReadTime readTime={meta.readTime} />
+        <PostReadTime readingTime={meta.readingTime} />
         <Link href={`/posts/${meta.slug}`}>
           <a className="ml-4 lg:ml-8 flex text-red-500">Read more {">>"}</a>
         </Link>

@@ -1,6 +1,6 @@
-const codepenRegex = /codepen[a-zA-Z./-]+/
+const codepenRegex = /codepen[a-zA-Z./\-]+/
 
-function getCodepenUserAndHash(url = "") {
+function getCodepenUserAndHash(url) {
   const codepenSegment = (url.match(codepenRegex) || [""])[0]
   if (!codepenSegment) return {}
   const codepenSegmentArr = codepenSegment.split("/")
@@ -16,7 +16,9 @@ function getCodepenUserAndHash(url = "") {
 const Codepen = ({ url = "-no url-", alt = "", title = "codepen" }) => {
   const { codepenUser, codepenHash, } = getCodepenUserAndHash(url)
   if (!codepenUser || !codepenHash) return (
-    <p className="flex justify-center items-center text-xl border-2 border-black dark:border-white mb-10 text-center" style={{ width: "100%", height: "600px", }}>Failed to load codepen <span className="font-bold">{alt}</span> at {url}.</p>
+    <div className="flex justify-center items-center text-base border-2 border-black dark:border-white mb-10 text-center" style={{ width: "100%", height: "600px", }}>
+      <p>Failed to load codepen <span className="font-bold mx-1">{title ? title : alt}</span> at {url}.</p>
+    </div>
   )
 
   return (

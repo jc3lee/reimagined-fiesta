@@ -1,6 +1,6 @@
 const PostCover = ({ src, alt }) => {
   return (
-    <img className="block object-cover object-center" src={src} alt={alt} style={{ height: "auto", minWidth: "100%", maxWidth: "100%", maxHeight: "calc(50vh + 180px)" }} />
+    <img className="block object-cover object-center" src={src} alt={alt} style={{ height: "auto", minWidth: "100%", maxWidth: "100%", maxHeight: "calc(75vh + 180px)" }} />
   )
 }
 

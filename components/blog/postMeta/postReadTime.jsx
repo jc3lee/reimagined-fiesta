@@ -1,6 +1,6 @@
-const PostReadTime = ({ readTime }) => {
+const PostReadTime = ({ readingTime }) => {
   return (
-    <span className="">{readTime}</span>
+    <span className="">{readingTime}</span>
   )
 }
 

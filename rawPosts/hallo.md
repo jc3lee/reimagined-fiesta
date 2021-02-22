@@ -1,35 +1,27 @@
 ---
-  tags: ["tutorial", "codenewbie", "javascript", "css", "unknown", "boss", "king", "sniper",]
-  date: "06/02/2021"
-  readTime: "5 min read"
-  cover: "/images/blog/bg-hero.jpg"
-  title: "Introduction to scroll animations with Intersection Observer"
-  slug: "hello"
-  description: "The Intersection Observer (IO) detects when an element enters or leaves the viewport (or a parent element). It can be used to easily add animation on scroll without external libraries. IO is asynchronous and more efficient than scroll listeners 👍."
+title: "Introduction to scroll animations with Intersection Observer"
+tags: [ "tutorial", "codenewbie", "javascript", "css" ]
+date: "2020-02-06"
+cover: "/images/blog/introduction-to-scroll-animations-with-intersection-observer/cover-1.png"
+description: "The Intersection Observer (IO) detects when an element enters or leaves the viewport (or a parent element). It can be used to easily add animation on scroll without external libraries.
+
+IO is asynchronous and more efficient than scroll listeners 👍."
 ---
 
 # Intro
 
-> The Intersection Observer (IO) detects when an element enters or leaves the viewport (or a parent element). It can be used to easily add animation on scroll without external libraries.
+The Intersection Observer (IO) detects when an element enters or leaves the viewport (or a parent element). It can be used to easily add animation on scroll without external libraries.
 
 IO is asynchronous and more efficient than scroll listeners 👍.
 
-Btw, if you learn better through videos, I highly suggest this [youtube tutorial](https://www.youtube.com/watch?v=T8EYosX4NOo "sth") by Kewin Powell.
+Btw, if you learn better through videos, I highly suggest this [youtube tutorial](https://www.youtube.com/watch?v=T8EYosX4NOo) by Kewin Powell.
 
-Here's a basic example of
-The Intersection Observer (IO) detects when an element enters or leaves the viewport (or a parent element). It can be used to easily add animation on scroll without external libraries.
+Here's a basic example of a fade in animation on scroll using the intersection observer.
 
-
-The Intersection Observer (IO) detects when an element enters or leaves the viewport (or a parent element). It can be used to easily add animation on scroll without external libraries.
-
----
-
- a fade in animation on scroll using the intersection observer.
-
-![fade in anim]  [code]
+![ fade in animation ](https://codepen.io/ljc-dev/pen/XWNXBJg?editors=0010)
 
 In this example we fade in an image on scroll by adding the class `fadeIn`  to it when it enters the viewport. This is the js:
-[code]: https://codepen.io/ljc-dev/pen/XWNXBJg?editors=0010 "sth"
+
 ```jsx
 const img = document.querySelector("img")
 
@@ -73,14 +65,14 @@ In my fade in example, I've returned an empty object `{}` so the default options
 - **root**: default `null`.  Identifies the Element or Document whose bounds are treated as the bounding box of the viewport for the element which is the observer's target. If the root is `null`, then the bounds of the actual document viewport are used.
 - **rootMargin**: default 0px. The values in rootMargin define offsets added to each side of the root's bounding box.  In other words, positive values reduce the root bounding box and negative values increase it. Try scrolling the 3 boxes in this example.
 
-![rootMargin example](https://codepen.io/ljc-dev/pen/vYyLVdR?editors=0010)
+![ options rootMargin](https://codepen.io/ljc-dev/pen/vYyLVdR?editors=0010)
 
 Similar to CSS's margin. For example: "0px 5px 10px 15px" means top: 0px, right: 5px, bottom: 10px and left: 0px.  Accepts px and % only. ⚠ 0 is not an accepted value, use 0px or 0% instead.
 
 - **threshold:**  default 0. The threshold is a number between 0 and 1.0. 
 A value of  0 means as soon as one pixel is visible, the callback will be run.  1.0  means that the threshold isn't considered passed until every pixel is visible. (⚠If you set the threshold to 1 and the element is bigger than the root, the number won't reach 1 because there will be some parts invisible at all time.)
 
-![threshold example](https://codepen.io/ljc-dev/pen/bGBEOMa)
+![options threshold](https://codepen.io/ljc-dev/pen/bGBEOMa)
 
 ## The callback
 
@@ -148,7 +140,7 @@ myObserver.observe(img3)
 
 Or by giving them a common class and iterate with **forEach.**
 
-```js
+```jsx
 const imgList = document.querySelectorAll(".imgToAnimate")
 
 // setting your observer here
@@ -198,7 +190,7 @@ Here are a few examples of scroll animations with IO. I'll try to write a blog o
 
 ## Enter & Leave Anim
 
-![enter & leave example](https://codepen.io/ljc-dev/pen/mdOVNqr?editors=0010)
+![Enter & Leave Animation](https://codepen.io/ljc-dev/pen/mdOVNqr?editors=0010)
 
 ## Scroll To Top
 
