@@ -1,3 +1,4 @@
+
 const PREDEFINED_TAGS = {
   "html": { bg: "bg-red-500", text: "text-white", },
   "js": { bg: "bg-yellow-300", text: "text-black", },
@@ -46,14 +47,14 @@ function getTagColors(tag, index) {
   return { bg, text }
 }
 
-function getAllPostsTags(postsTags) {
-  const allTagsWithDuplicates = postsTags.reduce((tmpAllTags, postTags) => {
-    tmpAllTags.push(...postTags)
-    return tmpAllTags
-  }, [])
-  return Array.from(new Set(allTagsWithDuplicates))
+function getAllTagsWithColors(tags) {
+  return tags.reduce((tagsWithColorsObj, t, index) => {
+    tagsWithColorsObj[t] = getTagColors(t, index)
+    return tagsWithColorsObj
+  }, {})
 }
 
-export {
-  getTagColors, getAllPostsTags,
+// access only from node js so module exports
+module.exports = {
+  getAllTagsWithColors,
 }

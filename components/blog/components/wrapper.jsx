@@ -20,7 +20,7 @@ export default function Wrapper({ children, meta }) {
               {children}
             </div>
           </div>
-          <PostSection meta={meta} />
+          <PostSection tags={meta.tags} />
         </div>
       </div>
     </Layout>

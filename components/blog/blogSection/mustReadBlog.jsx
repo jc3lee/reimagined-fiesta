@@ -26,10 +26,8 @@ const MustReadBlog = () => {
       </Link>
       <hr className="w-full bg-black mt-4" style={{ height: "2px" }} />
       <p className="mt-4 flex font-bold">
-        <p>
-          <PostReadTime readTime={meta.readTime} />
-        </p>
-        <Link href={`posts/${meta.slug}`}>
+        <PostReadTime readTime={meta.readTime} />
+        <Link href={`/posts/${meta.slug}`}>
           <a className="ml-4 lg:ml-8 flex text-red-500">Read more {">>"}</a>
         </Link>
       </p>
