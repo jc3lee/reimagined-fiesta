@@ -17,14 +17,14 @@ const Blog = ({ metas, page, pages, }) => {
       router.push(`/blog/page/${num}`,)
     }
   }
-
+  console.log(page);
   return (
     <Layout title="Blog">
       {page === 1 && <TopPost meta={metas[0]} />}
       <div className="px-6 py-12 flex flex-col lg:flex-row max-w-screen-lg w-full mx-auto">
         <div className="lg:pr-8">
           {
-            metas.slice(1).map(m => (<PostItem key={m.slug} meta={m} />))
+            metas.map(m => (<PostItem key={m.slug} meta={m} />))
           }
           <BlogPagination updateCurrentPageNum={updateCurrentPageNum} numOfPages={pages} currentPageNum={page} />
         </div>
@@ -45,7 +45,7 @@ export async function getStaticProps({ params: { blog } }) {
     props: {
       metas: metasSlice,
       page,
-      pages: Math.ceil(metas.length / NUM_POSTS_PER_PAGE)
+      pages: Math.ceil(metas.length / NUM_POSTS_PER_PAGE),
     },
   }
 }

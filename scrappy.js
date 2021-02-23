@@ -42,9 +42,11 @@ function extractTagsFromMds(mds) {
 
 function addReadingTimeToMds(allMds = []) {
   const result = allMds.map(md => {
-    const { text } = readingTime(md.content,)
+    const { text } = readingTime(md.content, {
+      wordsPerMinute: 250,
+    })
     md.data["readingTime"] = text
-    console.log("readingTime", text)
+    // console.log("readingTime", text)
     return md
   })
   return result
@@ -58,7 +60,7 @@ function getSlug(text) {
     strict: true,     // strip special characters except replacement, defaults to `false`
     locale: 'vi'       // language code of the locale to use
   })
-  console.log("slug", slug)
+  // console.log("slug", slug)
   return slug
 }
 
@@ -150,18 +152,22 @@ function getContentWithEmbedsAndImports(content) {
 }
 
 
-// just hard coding author
-// const author = {
-//   name: "JC Lee",
-//   pic: "/images/blog/author-pic.webp",
-//   twitterHandle: "@ljc_dev",
-//   twitterUrl: "https://twitter.com/ljc_dev",
-// }
+// just hard coding authors
 
-// function saveAuthor() {
-//   fs.writeFileSync("pages/author.json", JSON.stringify({ author, }))
-// }
-// saveAuthor()
+const allAuthors = [
+  {
+    name: "JC Lee",
+    pic: "/images/blog/author-pic.webp",
+    twitterHandle: "@ljc_dev",
+    twitterUrl: "https://twitter.com/ljc_dev",
+  },
+]
+
+function saveAuthors() {
+  fs.writeFileSync("pages/allAuthors.json", JSON.stringify({ allAuthors, }))
+}
+
+// saveAuthors()
 
 // 1 - Run this command to transform raw md posts to mdx
 
@@ -174,3 +180,5 @@ function getContentWithEmbedsAndImports(content) {
 // console.log(allTags.tagColors);
 // const allMetas = require("./pages/allMetas.json")
 // console.log(allMetas.metas);
+
+// getSlug("Scroll-to-top Button for Beginners")

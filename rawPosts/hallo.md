@@ -2,13 +2,13 @@
 title: "Introduction to scroll animations with Intersection Observer"
 tags: [ "tutorial", "codenewbie", "javascript", "css" ]
 date: "2020-02-06"
+author: "JC Lee"
+mustRead: true
 cover: "/images/blog/introduction-to-scroll-animations-with-intersection-observer/cover-1.png"
 description: "The Intersection Observer (IO) detects when an element enters or leaves the viewport (or a parent element). It can be used to easily add animation on scroll without external libraries.
 
 IO is asynchronous and more efficient than scroll listeners 👍."
 ---
-
-# Intro
 
 The Intersection Observer (IO) detects when an element enters or leaves the viewport (or a parent element). It can be used to easily add animation on scroll without external libraries.
 

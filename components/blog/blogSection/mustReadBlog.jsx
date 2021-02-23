@@ -1,17 +1,7 @@
 import PostReadTime from "../postMeta/postReadTime"
 import Link from "next/link"
 
-const meta = {
-  tags: ["tutorial", "codenewbie", "javascript", "css", "unknown", "boss", "king", "sniper",],
-  date: "06/02/2021",
-  readingTime: "5 min read",
-  cover: "/images/blog/bg-hero.jpg",
-  title: "Introduction to scroll animations with Intersection Observer",
-  slug: "hello",
-  description: "The Intersection Observer (IO) detects when an element enters or leaves the viewport (or a parent element). It can be used to easily add animation on scroll without external libraries. IO is asynchronous and more efficient than scroll listeners 👍.",
-}
-
-const MustReadBlog = () => {
+const MustReadBlog = ({ meta }) => {
   return (
     <div className="flex flex-col py-4">
       <Link href={`/posts/${meta.slug}`}>

@@ -4,9 +4,19 @@ import { PostCover, } from "./postMeta/postCover"
 import PostDate from "./postMeta/postDate"
 import PostReadTime from "./postMeta/postReadTime"
 import PostTag from "./postMeta/postTag"
+import { allMetas } from "../../pages/allMetas.json"
 
-const TopPost = ({ meta }) => {
-  const { title, cover, date, readingTime, description, slug, tags, } = meta
+function getTopPost(metas) {
+  const topPostMeta = metas.find(m => m.topPost)
+  return topPostMeta
+}
+
+const TopPost = () => {
+  const topPostMeta = getTopPost(allMetas)
+
+  if (!topPostMeta) return (<div></div>)
+
+  const { title, cover, date, readingTime, description, slug, tags, } = topPostMeta
   const truncatedDesc = getTruncatedText(description)
   return (
     <div className="">

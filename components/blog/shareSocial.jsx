@@ -6,7 +6,8 @@ import MailIco from '../../icons/MailIco'
 import RedditIco from '../../icons/RedditIco'
 import ShareIco from '../../icons/ShareIco'
 import TwitterIco from '../../icons/TwitterIco'
-import { author } from "../../pages/author.json"
+import { allAuthors } from "../../pages/allAuthors.json"
+import { getAuthorFromName } from '../../utils/authorsFns'
 
 const BASE_URL = "https://jclee.netlify.app/posts/"
 
@@ -50,7 +51,8 @@ function getMailTo(slug, title, authorName) {
 
 const ShareSocial = ({ meta }) => {
   const socialOverlayRef = useRef(null)
-  const { tags, description, title, slug } = meta
+  const { tags, description, title, slug, author: authorName } = meta
+  const author = getAuthorFromName(authorName, allAuthors)
 
   function handleShareClick() {
     toggleSocialOverlay()

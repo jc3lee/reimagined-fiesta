@@ -2,10 +2,13 @@ import TwitterIco from '../../icons/TwitterIco'
 import { AuthorThumbTiny, } from './postMeta/authorThumb'
 import PostDate from './postMeta/postDate'
 import PostReadTime from './postMeta/postReadTime'
-import { author } from "../../pages/author.json"
+import { allAuthors } from "../../pages/allAuthors.json"
+import { getAuthorFromName } from '../../utils/authorsFns'
 
 const PostDetails = ({ meta, }) => {
-  const { date, readingTime, } = meta
+  const { date, readingTime, author: authorName } = meta
+  const author = getAuthorFromName(authorName, allAuthors)
+
   return (
     <div className="mt-4">
       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between">
