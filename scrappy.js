@@ -88,13 +88,22 @@ function handleMdToMdx() {
   // add reading time
   const allMdsWithSlugsAndReadingTime = addReadingTimeToMds(allMdsWithSlugs)
 
+  // order metas by date
+
+  const sortedMetas = getMetasSortedByAscDate(allMdsWithSlugsAndReadingTime)
+
   // save all metas to json
-  fs.writeFileSync("pages/allMetas.json", JSON.stringify({ allMetas: allMdsWithSlugsAndReadingTime.map(md => md.data), }))
+  fs.writeFileSync("pages/allMetas.json", JSON.stringify({ allMetas: sortedMetas.map(md => md.data), }))
 
   // save mdx to posts folder
   for (const md of allMdsWithSlugsAndReadingTime) {
     fs.writeFileSync(`pages/posts/${md.data.slug}.mdx`, getMdx(md))
   }
+}
+
+function getMetasSortedByAscDate(metas) {
+  const sortedMetas = metas.sort((a, b) => a.date > b.date ? 1 : -1)
+  return sortedMetas
 }
 
 function getMdx(md) {
@@ -171,7 +180,7 @@ function saveAuthors() {
 
 // 1 - Run this command to transform raw md posts to mdx
 
-// handleMdToMdx()
+handleMdToMdx()
 
 // OTHER - Running the following to check tags and metas json files
 

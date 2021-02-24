@@ -1,6 +1,6 @@
 ---
 title: "Scroll to Top button for Beginners"
-tags: [ "tutorial", "css", "codenewbie", "javascript" ]
+tags: [ "tutorial", "css", "codenewbie", "javascript", "beginner" ]
 date: "2020-08-23"
 author: "JC Lee"
 topPost: true

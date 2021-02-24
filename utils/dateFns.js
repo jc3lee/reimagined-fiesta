@@ -13,6 +13,7 @@ function getPostFormattedDate(dateString) {
       postDate = formatDistanceToNow(new Date(dateString), {
         addSuffix: true,
       })
+      postDate = postDate.replace("about ", "")
     }
   }
   return postDate

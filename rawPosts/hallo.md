@@ -1,18 +1,16 @@
 ---
 title: "Introduction to scroll animations with Intersection Observer"
 tags: [ "tutorial", "codenewbie", "javascript", "css" ]
-date: "2020-02-06"
+date: "2021-02-06"
 author: "JC Lee"
 mustRead: true
 cover: "/images/blog/introduction-to-scroll-animations-with-intersection-observer/cover-1.png"
-description: "The Intersection Observer (IO) detects when an element enters or leaves the viewport (or a parent element). It can be used to easily add animation on scroll without external libraries.
-
-IO is asynchronous and more efficient than scroll listeners 👍."
+description: "The Intersection Observer (IO) detects when an element enters or leaves the viewport (or a parent element). It can be used to easily add animation on scroll without external libraries. IO is asynchronous and much more performant than scroll listeners 👍."
 ---
 
 The Intersection Observer (IO) detects when an element enters or leaves the viewport (or a parent element). It can be used to easily add animation on scroll without external libraries.
 
-IO is asynchronous and more efficient than scroll listeners 👍.
+IO is asynchronous and much more performant than scroll listeners 👍.
 
 Btw, if you learn better through videos, I highly suggest this [youtube tutorial](https://www.youtube.com/watch?v=T8EYosX4NOo) by Kewin Powell.
 
@@ -38,7 +36,7 @@ const myObserver = new IntersectionObserver(callback, options)
 myObserver.observe(img)
 ```
 
-Easy, right? Let's get started!
+Easy, right? Let's get started 😁!
 
 # Creating an intersection observer
 
@@ -120,7 +118,7 @@ const callback = (entries, observer) => {
 
 Etc. 😁 I've named the most important ones. You can find a list of all the entry properties [here](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry).
 
-# Select elements to be observed
+## Select elements to be observed
 
 To select an element to observe, we use the **observe()** method of our Intersection Observer.
 
@@ -176,7 +174,7 @@ const callback = (entries, observer) => {
 }
 ```
 
-# That's it!
+## That's it!
 
 I hope you've enjoyed this short intro on Intersection Observer 😃. 
 
@@ -184,19 +182,19 @@ Source: [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Obse
 
 Beside animating on scroll, it can be used to improve render speed and First Contentful Paint by avoiding to run scripts and load images (lazy loading) on parts the user is far from. 
 
-# Beyond the basics
+## Beyond the basics
 
 Here are a few examples of scroll animations with IO. I'll try to write a blog on each when I find some time 😅.
 
-## Enter & Leave Anim
+### Enter & Leave Anim
 
 ![Enter & Leave Animation](https://codepen.io/ljc-dev/pen/mdOVNqr?editors=0010)
 
-## Scroll To Top
+### Scroll To Top
 
 ![Scroll To Top](https://codepen.io/ljc-dev/pen/abBdxPb)
 
-## Update current tab on scroll
+### Update current tab on scroll
 
 ![Update current tab on scroll](https://codepen.io/ljc-dev/pen/MWbKdEW)
 
