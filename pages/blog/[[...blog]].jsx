@@ -6,7 +6,7 @@ import TopPost from "../../components/blog/topPost"
 import Layout from "../../components/layout/layout"
 import { getMetasSlice } from "../../utils/blogListFns"
 import { allMetas } from "../allMetas.json"
-const NUM_POSTS_PER_PAGE = 2
+const NUM_POSTS_PER_PAGE = 4
 
 const Blog = ({ metas, page, pages, }) => {
   const router = useRouter()

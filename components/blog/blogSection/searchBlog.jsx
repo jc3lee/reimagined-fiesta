@@ -1,7 +1,7 @@
 import { useReducer, useRef, useState } from "react"
 import SearchIco from "../../../icons/SearchIco"
 import PostTag from "../postMeta/postTag"
-import tagsData from "../../../pages/tags/allTags.json"
+import { allTags } from "../../../pages/tags/allTags.json"
 import Link from "next/link"
 
 const initialState = {
@@ -13,7 +13,6 @@ const initialState = {
 function searchReduce(state, action) {
   const { searchTag, suggestionIndex, suggestionsArr, } = state
   const { type, value, } = action
-
   switch (type) {
     case "LINK_CLICKED": {
       const newSearchTag = value
@@ -37,7 +36,7 @@ function searchReduce(state, action) {
       const newSuggestionIndex = suggestionIndex + 1
       return { searchTag: newSearchTag, suggestionIndex: newSuggestionIndex, suggestionsArr, }
     }
-    case "NO_SUGGEST": {
+    case "HIDE_SUGGEST": {
       const newSuggestionIndex = -1
       const newSuggestionsArr = []
       return { searchTag, suggestionIndex: newSuggestionIndex, suggestionsArr: newSuggestionsArr, }
@@ -48,23 +47,21 @@ function searchReduce(state, action) {
 }
 
 function getFilteredTags(value) {
-  return tagsData.allTags.filter(tag => tag.indexOf(value) !== -1)
+  return allTags.filter(tag => tag.indexOf(value) !== -1)
 }
 
 const SearchBlog = ({ tags = [], }) => {
   const [state, dispatch] = useReducer(searchReduce, initialState)
   const searchARef = useRef(null)
   const { searchTag, suggestionIndex, suggestionsArr, } = state
-
-  // console.log(searchTag, suggestionIndex, suggestionsArr,);
   if (!tags || tags.length === 0) {
     // add default tags
-    tags = ["html", "css", "js", "react", "tutorial",]
+    tags = allTags.slice(0, 5)
   }
 
   function handleSubmit(e) {
     dispatch({
-      type: "NO_SUGGEST",
+      type: "HIDE_SUGGEST",
     })
     e.preventDefault()
     searchARef.current.click()
@@ -111,16 +108,36 @@ const SearchBlog = ({ tags = [], }) => {
   }
 
   function handleSuggestionClick(e) {
-    // hide suggestions
+    // update search & hide suggestions
     dispatch({
       type: "LINK_CLICKED",
       value: e.target.text,
     })
   }
 
-  function handleSearchBlur(e) {
-    // hide suggestions
+  function handleSearchInputFocus() {
+    // a bit hacky
+    // not sure how to remove the suggestions better
+    setTimeout(() => {
+      window.addEventListener("click", handleFn)
+    }, 250)
+  }
 
+  function handleFn(e) {
+    console.log("win", e.target)
+    window.removeEventListener("click", handleFn)
+    dispatch({
+      type: "HIDE_SUGGEST",
+    })
+  }
+
+  function handleTagsClick(e) {
+    console.log("tag", e.target.text)
+    // update search & hide suggestions
+    dispatch({
+      type: "LINK_CLICKED",
+      value: e.target.text,
+    })
   }
 
   return (
@@ -128,7 +145,7 @@ const SearchBlog = ({ tags = [], }) => {
       <label className="text-2xl font-bold tracking-tight" htmlFor="tagInput">Search article by tag</label>
       <div className="relative mt-4">
         <form onSubmit={handleSubmit}>
-          <input value={searchTag} onBlur={handleSearchBlur} onKeyDown={handleKeyDown} onChange={handleSearch} required={true} type="text" className="bg-gray-100 hover:bg-gray-200 focus:bg-gray-200 dark:hover:bg-white dark:focus:bg-white px-2 py-1 block w-full text-black focus:outline-none focus:ring-1 focus:ring-black " />
+          <input value={searchTag} onFocus={handleSearchInputFocus} onKeyDown={handleKeyDown} onChange={handleSearch} required={true} type="text" className="bg-gray-100 hover:bg-gray-200 focus:bg-gray-200 dark:hover:bg-white dark:focus:bg-white px-2 py-1 block w-full text-black focus:outline-none focus:ring-1 focus:ring-black " />
           <Link href={`/tags/${searchTag}`}>
             <a ref={searchARef} className="z-10 flex justify-center items-center absolute right-0 inset-y-0 w-0 h-0 overflow-hidden" aria-hidden="true">search</a>
           </Link>
@@ -143,7 +160,7 @@ const SearchBlog = ({ tags = [], }) => {
           </div>
         </div>
       </div>
-      <div className="flex flex-wrap mt-4">
+      <div onClick={handleTagsClick} className="flex flex-wrap mt-4">
         {tags.map(t => (
           <PostTag key={t} tag={t} />
         ))}

@@ -33,8 +33,10 @@ function extractTagsFromMds(mds) {
   // when search blog tries to get the colors for those tags that aren't present in metas => error.
   // it's a bug. Need to either change default tags to existing ones or create posts with those tags. 
   // For now cheat by including them with defaultTagsInSearchBlog
-  const defaultTagsInSearchBlog = ["html", "css", "js", "react", "tutorial",]
-  const tagColors = getAllTagsWithColors(Array.from(new Set([...allTags, ...defaultTagsInSearchBlog])))
+  // const defaultTagsInSearchBlog = ["html", "css", "js", "react", "tutorial",]
+  // => removed default tags hack!
+
+  const tagColors = getAllTagsWithColors(allTags)
 
   // save tags and tags colors to json
   fs.writeFileSync("pages/tags/allTags.json", JSON.stringify({ allTags, tagColors }))
@@ -159,7 +161,6 @@ function getContentWithEmbedsAndImports(content) {
   }
   return { contentWithEmbeds, componentImports, }
 }
-
 
 // just hard coding authors
 
