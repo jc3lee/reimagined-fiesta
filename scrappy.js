@@ -102,7 +102,7 @@ function handleMdToMdx() {
 }
 
 function getMetasSortedByAscDate(metas) {
-  const sortedMetas = metas.sort((a, b) => a.date > b.date ? 1 : -1)
+  const sortedMetas = metas.sort((a, b) => a.date > b.date ? -1 : 1)
   return sortedMetas
 }
 
@@ -190,4 +190,4 @@ handleMdToMdx()
 // const allMetas = require("./pages/allMetas.json")
 // console.log(allMetas.metas);
 
-// getSlug("Scroll-to-top Button for Beginners")
+// getSlug("Hamburger menu with no JS - Beginners")

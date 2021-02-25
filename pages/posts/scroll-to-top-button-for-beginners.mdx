@@ -29,7 +29,7 @@ No javascript needed!
 
 # Scroll to top button with vanilla js
 
-The previous example works fine but has a serious drawback because after clicking on that link, the anchor "#scroll-to-top" will show up in the url . We could call the anchor #home. But it'll still be in the url history when the user clicks back.
+The previous example works fine but has a serious drawback because after clicking on that link, the anchor *#scroll-to-top* will show up in the url . We could call the anchor *#home*. But it'll still be in the url history when the user clicks back.
 
 That's why I prefer to do it in js 😁. Plus js allows much more customization like:
 
@@ -38,7 +38,7 @@ That's why I prefer to do it in js 😁. Plus js allows much more customization 
 
 ## The button
 
-Let's just created a simple button with a class of *scrollToTopBtn* so we can refer to it in js.
+Let's just created a simple button with a class of `scrollToTopBtn` so we can refer to it in js.
 
 ```html
 <button class="scrollToTopBtn">TOP</button>
@@ -88,7 +88,7 @@ var scrollableHeight = document.documentElement.scrollHeight - document.document
 
 By dividing scrollTop with scrollableHeight we get a ratio between 0 and 1. 0 meaning the user hasn't scrolled and 1 meaning the user scrolled to the end of the page. This ratio tells us how much the user scrolled.
 
-If we want the scroll to top button to show up after the user scrolled 50% we set a *golden ratio* of 0.5. And with and *if else* statement make the button visible above and hidden below.
+If we want the scroll to top button to show up after the user scrolled 50% we set a *golden ratio* of 0.5. And, with an if else statement, make the button visible above and hidden below.
 
 ```js
 document.addEventListener("scroll", handleScroll);
@@ -129,6 +129,7 @@ function scrollToTop() {
 - `top: 0,` means scroll to 0px vertically.
 - `behavior: "smooth"` makes the scroll smooth.
 - there's also a `left` property for horizontal scroll.
+
 And that's it! Here's the final js:  
 
 ```javascript

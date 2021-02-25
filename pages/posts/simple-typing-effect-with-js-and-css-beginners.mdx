@@ -1,12 +1,11 @@
 import Codepen from "../../components/blog/embed/Codepen.jsx"
 export const meta = {"title":"Simple typing effect with JS and CSS - Beginners","tags":["javascript","tutorial","codenewbie","beginner","css"],"date":"2020-08-01","author":"JC Lee","cover":"/images/blog/simple-typing-effect-with-js-and-css-beginners/cover-1.png","description":"The typing effect is a simple yet stylish animation used by many bloggers and web developers to introduce themselves in an elegant fashion. This tutorial will show you how to create the typing effect with plain css and js (no libraries).","slug":"simple-typing-effect-with-js-and-css-beginners","readingTime":"4 min read"}
 
-(2nd update -> 100% rewritten.)
 The typing effect is a simple yet stylish animation used by many bloggers and web developers to introduce themselves in an elegant fashion.
 
 This tutorial will show you how to create the typing effect with plain css and js (no libraries).
 
-Let's start by creating a text holder `p` with a class of *typeText*.
+Let's start by creating a text holder `p` with a class of `typeText`.
 
 ```html
     <p class="typeText"></p>
@@ -26,7 +25,7 @@ We add a blinking cursor after our paragraph with a CSS animation:
 }
 ```
 
-The pseudo class **::after** is going to add the cursor **|** and make it blink with the keyframes animation blink.
+The pseudo class `::after` is going to add the cursor `|` and make it blink with the keyframes animation blink.
 
 If you are not familiar with animations, you might want to have a look at my [introduction to CSS animations](/posts/introduction-to-scroll-animations-with-intersection-observer).
 
@@ -74,19 +73,19 @@ function playAnim() {
 playAnim()
 ```
 
-The playAnim function calls itself repeatedly using setTimeout with a delay of 120ms.
+The `playAnim()` function calls itself repeatedly using `setTimeout` with a delay of 120ms.
 
-By using the string method slice(0, index) we set the text of typeText to a substring of the **textToBeTyped**.
+By using the string method `slice(0, index)` we set the text of `typeText` to a substring of the `textToBeTyped`.
 
 ```js
 typeText.innerText = textToBeTyped.slice(0, index)
 ```
 
-**index** begins at 0 and increments by 1 when we are adding and decrements by 1 when we are removing.
+`index` begins at 0 and increments by 1 when we are adding and decrements by 1 when we are removing.
 
-**isAdding** is a boolean that is used to check whether we are adding or removing.
+`isAdding` is a boolean that is used to check whether we are adding or removing.
 
-When the index is larger than the length of textToBeTyped, we set isAdding to false to start removing. And when index is equal to 0, we set isAdding is true to start adding again.
+When `index` is larger than the length of `textToBeTyped`, we set `isAdding` to false to start removing. And when `index` is equal to 0, we set `isAdding` is true to start adding again.
 
 After it has finished adding, a setTimeout with a 2000ms delay will create a break for people to read the text before it gets removed again.
 
@@ -106,7 +105,9 @@ And we get:
 
 <Codepen alt={'result'} url={'https://codepen.io/ljc-dev/pen/oNYoyrW?editors=0100'} title={''} />
 
-And that's it! You should now be able to make your own typing effect. If you have questions, hit me up on my socials 👌. 
+And that's it! You should now be able to make your own typing effect.
+
+I've tried to make it beginner friendly but not sure if I succeeded. If you have questions, please leave a comment or hit me up on my socials 😁. 
 
 ### Beyond the basics
 
@@ -120,11 +121,11 @@ The cursor animation can be made more realistic by adding a built-in animation-t
 }
 ```
 
-**steps** are a recent addition to css. They break the flow of an animation by playing it in jumping steps. The only difference between the two animations below is the addition of steps on the 2nd div.
+`steps` are a recent addition to css. They break the flow of an animation by playing it in jumping steps. The only difference between the two animations below is the addition of steps on the 2nd div.
 
-[jumping steps](https://codepen.io/ljc-dev/pen/xxRpwbE?editors=1100)
+<Codepen alt={'jumping steps'} url={'https://codepen.io/ljc-dev/pen/xxRpwbE?editors=1100'} title={''} />
 
-We can increase the removing speed by changing the setTimeout delay with the boolean isAdding and a ternary operator like this:
+We can increase the removing speed by changing the setTimeout delay with the boolean `isAdding` and a ternary operator like this:
 
 ```js
 function playAnim() {
@@ -135,7 +136,7 @@ function playAnim() {
 
 The ternary operator means if it's adding set the delay to 120ms. If it's removing set the delay to 60ms.
 
-And instead of typing one string we can choose an array of string *textToBeTypedArr* to be typed in turn. And a *textToBeTypedIndex* variable to keep track of the current text index in the array. textToBeTypedIndex will be updated it each time after we are done removing the previous text.
+And instead of typing one string we can choose an array of string `textToBeTypedArr` to be typed in turn. And a `textToBeTypedIndex` variable to keep track of the current text index in the array. textToBeTypedIndex will be updated it each time after we are done removing the previous text.
 
 ```js
 var typeText = document.querySelector(".typeText")
@@ -174,7 +175,7 @@ playAnim()
 
 <Codepen alt={'improved result'} url={'https://codepen.io/ljc-dev/pen/rNWYrax?editors=0010'} title={''} />
 
-And for prefectionists that don't like the cursor blinking when the text is being added/removed, we can toggle the blink animation by removing the animation from ::after and adding it only in js with the *showAnim* class:
+And for prefectionists that don't like the cursor blinking when the text is being added/removed, we can toggle the blink animation by removing the animation from ::after and adding it only in js with the `showAnim` class:
 
 ```css
 .typeText::after {
@@ -209,4 +210,4 @@ function playAnim() {
 }
 ```
 
-[final result](https://codepen.io/ljc-dev/pen/jOVYPQX?editors=1000)
+<Codepen alt={'final result'} url={'https://codepen.io/ljc-dev/pen/jOVYPQX?editors=1000'} title={''} />

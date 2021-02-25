@@ -60,15 +60,15 @@ const options = {
 
 In my fade in example, I've returned an empty object `{}` so the default options will apply. (Same with not return anything. )
 
-- **root**: default `null`.  Identifies the Element or Document whose bounds are treated as the bounding box of the viewport for the element which is the observer's target. If the root is `null`, then the bounds of the actual document viewport are used.
-- **rootMargin**: default 0px. The values in rootMargin define offsets added to each side of the root's bounding box.  In other words, positive values reduce the root bounding box and negative values increase it. Try scrolling the 3 boxes in this example.
+- **root**: default `null`.  it's the viewport. Can be the document or an HTML element. If the root is `null`, defaults to `document`. 
+- **rootMargin**: default 0px. defines the offsets of each side of the root's bounding box. In other words, positive values reduce the root bounding box and negative values increase it. Try scrolling the 3 boxes in this example.
 
 ![ options rootMargin](https://codepen.io/ljc-dev/pen/vYyLVdR?editors=0010)
 
-Similar to CSS's margin. For example: "0px 5px 10px 15px" means top: 0px, right: 5px, bottom: 10px and left: 0px.  Accepts px and % only. ⚠ 0 is not an accepted value, use 0px or 0% instead.
+Similar to CSS's margin syntax: "0px 5px 10px 15px" means top: 0px, right: 5px, bottom: 10px and left: 0px. Accepts px and % only. ⚠ 0 is not an accepted value, use 0px or 0% instead.
 
 - **threshold:**  default 0. The threshold is a number between 0 and 1.0. 
-A value of  0 means as soon as one pixel is visible, the callback will be run.  1.0  means that the threshold isn't considered passed until every pixel is visible. (⚠If you set the threshold to 1 and the element is bigger than the root, the number won't reach 1 because there will be some parts invisible at all time.)
+0 meaning as soon as one pixel is visible, the callback will be run.  1.0  means every pixel needs to be visible before calling the callback. (⚠ If you set the threshold to 1 and the element is bigger than the root, the number won't reach 1 because there will be some parts invisible at all time.)
 
 ![options threshold](https://codepen.io/ljc-dev/pen/bGBEOMa)
 
@@ -94,7 +94,7 @@ const callback = (entries, observer) => {
 
 The **observer** can be used to dynamically add or remove elements to observe. More on it below.
 
-The focus is on the list of **entries**. There is one ****entry object for each observed element. It's common practice to use a forEach to iterate.
+The focus is on the list of **entries**. There is one entry object for each observed element. It's common practice to use `forEach` to iterate.
 
 Each entry has the following helpful properties:
 
@@ -136,7 +136,7 @@ myObserver.observe(img2)
 myObserver.observe(img3)
 ```
 
-Or by giving them a common class and iterate with **forEach.**
+Or by giving them a common class and iterate with `forEach`:
 
 ```jsx
 const imgList = document.querySelectorAll(".imgToAnimate")
@@ -148,13 +148,13 @@ imgList.forEach(img => {
 })
 ```
 
-To stop observing, call the **unobserve()** method on the element:
+To stop observing, call `unobserve()` on the element:
 
 ```jsx
 myObserver.unobserve(img)
 ```
 
-To stop observing every element at once call **disconnect()**:
+To stop observing every element at once call `disconnect()`:
 
 ```jsx
 myObserver.disconnect()
@@ -174,13 +174,15 @@ const callback = (entries, observer) => {
 }
 ```
 
+Note: It's a good practice to unobserve elements that you are done playing with.
+
 ## That's it!
 
 I hope you've enjoyed this short intro on Intersection Observer 😃. 
 
 Source: [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)
 
-Beside animating on scroll, it can be used to improve render speed and First Contentful Paint by avoiding to run scripts and load images (lazy loading) on parts the user is far from. 
+Beside animating on scroll, it can be used to improve render speed and First Contentful Paint with lazy loading of scripts and media.
 
 ## Beyond the basics
 

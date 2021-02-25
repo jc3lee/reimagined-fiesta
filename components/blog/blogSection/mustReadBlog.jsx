@@ -1,5 +1,5 @@
-import PostReadTime from "../postMeta/postReadTime"
 import Link from "next/link"
+import PostDate from "../postMeta/postDate"
 
 const MustReadBlog = ({ meta }) => {
   return (
@@ -17,7 +17,7 @@ const MustReadBlog = ({ meta }) => {
       </Link>
       <hr className="w-full bg-black mt-4" style={{ height: "2px" }} />
       <p className="mt-4 flex font-bold">
-        <PostReadTime readingTime={meta.readingTime} />
+        <PostDate date={meta.date} formal={true} />
         <Link href={`/posts/${meta.slug}`}>
           <a className="ml-4 lg:ml-8 flex text-red-500">Read more {">>"}</a>
         </Link>
