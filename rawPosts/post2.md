@@ -3,7 +3,7 @@ title: "Review on Rellax (for parallax) and AOS (animate on scroll)"
 tags: [ "review", "javascript", "libraries", "animation", "css" ]
 date: "2021-01-17"
 author: "JC Lee"
-mustRead: true
+mustRead: false
 cover: "/images/blog/review-on-rellax-for-parallax-and-aos-animate-on-scroll/cover-1.png"
 description: "AOS is a very popular scroll animation library but it has some unexpected shortcomings with responsive design. Rellax is a rising star for parallax animations on desktop and mobile.
 I wrote this review after playing with both on a react website project."

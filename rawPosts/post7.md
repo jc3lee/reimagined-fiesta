@@ -3,6 +3,7 @@ title: "A quick hack to use local images in Codepen"
 tags: [ "tutorial", "codenewbie", "codepen", "beginner" ]
 date: "2020-06-27"
 author: "JC Lee"
+mustRead: true
 cover: "/images/blog/a-quick-hack-to-use-local-images-in-codepen/cover-1.png"
 description: "Handling files is a pro feature in Codepen. Free users can't add local files like images to use them in the editor. In this short tutorial, we'll learn to host an image on **Github Pages** and use it in Codepen."
 ---

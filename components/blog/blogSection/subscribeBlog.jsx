@@ -6,12 +6,9 @@ const SubscribeBlog = () => {
   }
 
   return (
-    <div className="bg-primary-dark flex flex-col justify-center items-center font-bold px-12 py-16 lg:px-4 lg:py-12 w-full">
-      <p className="text-2xl text-white text-center">Subscribe for webdev tips straight to your inbox.</p>
-      <form className="mt-6 flex flex-wrap w-full justify-center" onClick={handleSubmit}>
-        <input required={true} className="flex-1 py-1 px-2 bg-gray-100 hover:bg-white focus:bg-white text-black focus:outline-none" style={{ maxWidth: "14rem", }} type="email" />
-        <button className="py-1 px-2 bg-red-500 text-white capitalize">subscribe</button>
-      </form>
+    <div className="bg-primary-dark flex flex-col justify-center items-center lg:items-end text-center lg:text-right px-12 py-16 lg:px-6 lg:py-6 w-full font-bold ">
+      <p className="text-2xl lg:text-3xl text-white lg:pl-12">Subscribe to get my best posts in your inbox.</p>
+      <a href="https://www.getrevue.co/profile/ljc_dev" rel="noopener" className="text-lg mt-8 py-1.5 px-6 bg-red-500 text-white uppercase">subscribe</a>
     </div>
   )
 }

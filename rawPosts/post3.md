@@ -3,7 +3,7 @@ title: "Scroll to Top button for Beginners"
 tags: [ "tutorial", "css", "codenewbie", "javascript", "beginner" ]
 date: "2020-08-23"
 author: "JC Lee"
-topPost: true
+topPost: false
 cover: "/images/blog/scroll-to-top-button-for-beginners/cover-1.png"
 description: "Scroll to top button is a very common UX feature in websites. It's goal is to prevent annoyance of users forced to scroll back up - especially on mobile devices. In this short tutorial, we'll see how to implement one with css and pure (vanilla) javascript."
 ---

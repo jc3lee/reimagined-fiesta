@@ -3,6 +3,7 @@ title: "Simple typing effect with JS and CSS - Beginners"
 tags: [ "javascript", "tutorial", "codenewbie", "beginner", "css" ]
 date: "2020-08-01"
 author: "JC Lee"
+mustRead: true
 cover: "/images/blog/simple-typing-effect-with-js-and-css-beginners/cover-1.png"
 description: "The typing effect is a simple yet stylish animation used by many bloggers and web developers to introduce themselves in an elegant fashion. This tutorial will show you how to create the typing effect with plain css and js (no libraries)."
 ---

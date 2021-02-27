@@ -3,6 +3,7 @@ title: "Easy hamburger menu with JS"
 tags: [ "javascript", "html", "css", "tutorial", ]
 date: "2020-07-26"
 author: "JC Lee"
+topPost: true
 cover: "/images/blog/easy-hamburger-menu-with-js/cover-1.png"
 description: "A hamburger menu is a classic UX feature present in countless websites. It works by showing and hiding a menu on click. It's especially popular in mobile design. In this tutorial, we'll create a hamburger menu in pure html, css and js."
 ---
