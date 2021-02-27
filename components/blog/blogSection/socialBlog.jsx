@@ -12,7 +12,7 @@ const SocialBlog = () => {
           <TwitterIco icoClasses={"w-10 h-10"} />
         </a>
       </Link>
-      <Link href="https://www.linkedin.com/in/jc-lee-a939831b5/">
+      <Link href="https://www.linkedin.com/in/jclee-dev/">
         <a className="hover:text-blue-700">
           <span className="sr-only">LinkedIn</span>
           <LinkedInIco icoClasses={"w-10 h-10"} />

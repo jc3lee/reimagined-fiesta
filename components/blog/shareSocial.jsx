@@ -9,17 +9,17 @@ import TwitterIco from '../../icons/TwitterIco'
 import { allAuthors } from "../../pages/allAuthors.json"
 import { getAuthorFromName } from '../../utils/authorsFns'
 
-const BASE_URL = "https://jclee.netlify.app/posts/"
+const BASE_URL = "https://reimagined-fiesta.vercel.app/posts/"
 
 function getFacebookShareUrl(slug) {
-  const postUrl = "https://jclee.netlify.app/"
-  // const postUrl = BASE_URL + slug
+  // const postUrl = "https://jclee.netlify.app/"
+  const postUrl = BASE_URL + slug
   return `https://facebook.com/sharer/sharer.php?u=${postUrl}`
 }
 
 function getTwitterShareUrl(slug, title, twitterHandle, tags) {
-  const postUrl = "https://jclee.netlify.app/"
-  // const postUrl = BASE_URL + slug
+  // const postUrl = "https://jclee.netlify.app/"
+  const postUrl = BASE_URL + slug
   const twitterTags = tags.map(t => `#${t}`).join(" ")
   const text = `${title} by ${twitterHandle}.\n\n${twitterTags}`
   const encodedText = encodeURIComponent(text)
@@ -28,25 +28,25 @@ function getTwitterShareUrl(slug, title, twitterHandle, tags) {
 }
 
 function getLinkedInShareUrl(slug) {
-  // const postUrl = BASE_URL + slug
-  const postUrl = "https://jclee.netlify.app/"
+  // const postUrl = "https://jclee.netlify.app/"
+  const postUrl = BASE_URL + slug
   return `https://www.linkedin.com/sharing/share-offsite/?url=${postUrl}`
 }
 
 function getRedditShareUrl(slug, title) {
-  // const postUrl = BASE_URL + slug
-  const postUrl = "https://jclee.netlify.app/"
+  const postUrl = BASE_URL + slug
+  // const postUrl = "https://jclee.netlify.app/"
   const encodedTitle = encodeURIComponent(title)
   return `https://reddit.com/submit/?url=${postUrl}&title=${encodedTitle}`
 }
 
 function getMailTo(slug, title, authorName) {
-  // const postUrl = BASE_URL + slug
+  // const postUrl = "https://jclee.netlify.app/"
+  const postUrl = BASE_URL + slug
   const text = `${title} by ${authorName}.\n`
-  const postUrl = "https://jclee.netlify.app/"
   const encodedTitle = encodeURIComponent(title)
   const encodedText = encodeURIComponent(text)
-  return `mailto:?subject=${encodedTitle}&body=${text}`
+  return `mailto:?subject=${encodedTitle}&body=${encodedText}`
 }
 
 const ShareSocial = ({ meta }) => {
