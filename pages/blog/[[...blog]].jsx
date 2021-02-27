@@ -17,7 +17,6 @@ const Blog = ({ metas, page, pages, }) => {
       router.push(`/blog/page/${num}`,)
     }
   }
-  console.log(page);
   return (
     <Layout title="Blog">
       {page === 1 && <TopPost meta={metas[0]} />}

@@ -1,5 +1,12 @@
-import Codepen from "../../components/blog/embed/Codepen.jsx"
-export const meta = {"title":"Introduction to CSS Animations","tags":["tutorial","codenewbie","animation","css","beginner"],"date":"2020-09-15","author":"JC Lee","cover":"/images/blog/introduction-to-css-animations/cover-1.gif","description":"This tutorial is intended for people with little to no knowledge on CSS animations. We'll learn about the two ways of adding animation in CSS: transitions and animations with keyframes. Transitions are used for less complicated animations, to move from one stage to another. Animations with keyframes are more suited for complex animations.","slug":"introduction-to-css-animations","readingTime":"4 min read"}
+---
+title: "Introduction to CSS Animations"
+tags: [ "tutorial", "codenewbie", "animation", "css", "beginner" ]
+date: "2020-09-15"
+author: "JC Lee"
+cover: "/images/blog/introduction-to-css-animations/cover-1.gif"
+description: "This tutorial is intended for people with little to no knowledge on CSS animations. We'll learn about the two ways of adding animation in CSS: transitions and animations with keyframes.
+Transitions are used for less complicated animations, to move from one stage to another. Animations with keyframes are more suited for complex animations."
+---
 
 So you want to animate with CSS? Great, let's get started 😄!
 
@@ -9,7 +16,7 @@ With CSS `transform` we can rotate, scale, skew, or translate an html element.
 
 Try hovering ( or clicking if you are on mobile) on the ninja images:
 
-<Codepen alt={'no animation'} url={'https://codepen.io/ljc-dev/pen/BaQYmNY?editors=0100'} title={''} />
+![no animation](https://codepen.io/ljc-dev/pen/BaQYmNY?editors=0100)
 
 No animations yet. Here's the code:
 
@@ -79,7 +86,7 @@ This code and the one above are the same.
 
 We get an animation on hover:
 
-<Codepen alt={'transition animation'} url={'https://codepen.io/ljc-dev/pen/JjbpOYG?editors=0100'} title={''} />
+![transition animation](https://codepen.io/ljc-dev/pen/JjbpOYG?editors=0100)
 
 We can change the feel of the transition with `transition-timing-function`.
 
@@ -108,7 +115,7 @@ Or
 
 If you hover again on the ninja images, you'll notice the animations start with 1s delay.
 
-<Codepen alt={'delay'} url={'https://codepen.io/ljc-dev/pen/jOVZpvo?editors=0100'} title={''} />
+![delay](https://codepen.io/ljc-dev/pen/jOVZpvo?editors=0100)
 
 ### @keyframes animations
 
@@ -180,7 +187,7 @@ With the `animation` shorthand:
 
 And we get this monstrosity:
 
-<Codepen alt={'codepen'} url={'https://codepen.io/ljc-dev/pen/NWbyvaq'} title={''} />
+![codepen](https://codepen.io/ljc-dev/pen/NWbyvaq)
 (click on rerun to play the animation again)
 
 Same with transitions we can change the feel of the animation with an
@@ -207,7 +214,7 @@ With keyframes animation, we can also decide how many times to run an animation 
 
 I've used `infinite` for the cover animation. Here is the code for my text animation:
 
-<Codepen alt={'text anim'} url={'https://codepen.io/ljc-dev/pen/WNoMdzr'} title={''} />
+![text anim](https://codepen.io/ljc-dev/pen/WNoMdzr)
 
 There are two more advanced animation properties:
 
@@ -260,7 +267,7 @@ Or:
 }
 ```
 
-<Codepen alt={'kpop anim'} url={'https://codepen.io/ljc-dev/pen/eYBVLZB?editors=1000'} title={''} />
+![kpop anim](https://codepen.io/ljc-dev/pen/eYBVLZB?editors=1000)
 
 Notice how `alternate` is used to change the direction of the 2nd iteration. So instead of jumping back up and sliding down again, the animation runs in reverse and slides up.
 
@@ -283,25 +290,25 @@ I've posted below a small series of common CSS animations - some with js. If you
 ### Happy coding 👋!
 
 * button transition opacity on hover & scale on active 
-<Codepen alt={'button transition on hover & active'} url={'https://codepen.io/ljc-dev/pen/poNaaGO'} title={''} />
+![button transition on hover & active](https://codepen.io/ljc-dev/pen/poNaaGO)
 
 * spinner 
-<Codepen alt={'spinner'} url={'https://codepen.io/ljc-dev/pen/wvoypbG?editors=0110'} title={''} />
+![spinner](https://codepen.io/ljc-dev/pen/wvoypbG?editors=0110)
 
 * progress bar anim 
-<Codepen alt={'progress bar anim '} url={'https://codepen.io/ljc-dev/pen/gOLvvPP'} title={''} />
+![progress bar anim ](https://codepen.io/ljc-dev/pen/gOLvvPP)
 
 * menu links bottom line on hover
-<Codepen alt={' menu links bottom line on hover '} url={'https://codepen.io/ljc-dev/pen/poNaapV?editors=1100'} title={''} />
+![ menu links bottom line on hover ](https://codepen.io/ljc-dev/pen/poNaapV?editors=1100)
 
 * scroll to top with fade up anim 
-<Codepen alt={' scroll to top with fade up anim'} url={'https://codepen.io/ljc-dev/pen/rNWYyjv'} title={''} />
+![ scroll to top with fade up anim](https://codepen.io/ljc-dev/pen/rNWYyjv)
 
 * hamburger slide down menu 
-<Codepen alt={' hamburger slide down menu '} url={'https://codepen.io/ljc-dev/pen/xxRpgaL?editors=1000'} title={''} />
+![ hamburger slide down menu ](https://codepen.io/ljc-dev/pen/xxRpgaL?editors=1000)
 
 * hamburger slide right menu + overlay
-<Codepen alt={' hamburger slide from left menu + overlay'} url={'https://codepen.io/ljc-dev/pen/zYoqbrN'} title={''} />
+![ hamburger slide from left menu + overlay](https://codepen.io/ljc-dev/pen/zYoqbrN)
 
 * post cover for those who are curious how I did it (not responsive)
-<Codepen alt={' post cover'} url={'https://codepen.io/ljc-dev/pen/RwoQxYm?editors=1100'} title={''} />
+![ post cover](https://codepen.io/ljc-dev/pen/RwoQxYm?editors=1100)

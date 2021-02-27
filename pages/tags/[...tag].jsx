@@ -41,7 +41,7 @@ const Tag = ({ metas, tag, page, pages, }) => {
 export default Tag
 
 export async function getStaticProps({ params: { tag } }) {
-  console.log("tag", tag)
+  // console.log("tag", tag)
   const tagName = tag[0]
   const tagPage = tag[2] || 1
   const metas = allMetas

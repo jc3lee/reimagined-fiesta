@@ -92,10 +92,10 @@ function handleMdToMdx() {
 
   // order metas by date
 
-  const sortedMetas = getMetasSortedByAscDate(allMdsWithSlugsAndReadingTime)
+  const sortedMds = getMdsSortedByAscDate(allMdsWithSlugsAndReadingTime)
 
   // save all metas to json
-  fs.writeFileSync("pages/allMetas.json", JSON.stringify({ allMetas: sortedMetas.map(md => md.data), }))
+  fs.writeFileSync("pages/allMetas.json", JSON.stringify({ allMetas: sortedMds.map(md => md.data), }))
 
   // save mdx to posts folder
   for (const md of allMdsWithSlugsAndReadingTime) {
@@ -103,10 +103,21 @@ function handleMdToMdx() {
   }
 }
 
-function getMetasSortedByAscDate(metas) {
-  const sortedMetas = metas.sort((a, b) => a.date > b.date ? -1 : 1)
-  return sortedMetas
+function getMdsSortedByAscDate(mds) {
+  const sortedMds = mds.sort((a, b) => (new Date(a.data.date).getTime() > new Date(b.data.date).getTime()) ? -1 : 1)
+  return sortedMds
 }
+
+const dates = [
+  "2021-02-06",
+  "2021-01-17",
+  "2020-08-23",
+  "2020-08-01",
+  "2020-07-26",
+  "2020-07-25",
+  "2020-06-27",
+  "2020-09-15",
+]
 
 function getMdx(md) {
   const { data, content } = md
